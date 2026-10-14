@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Youssef Elattar</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Manrope:wght@400;500;700&family=Cairo:wght@400;600;900&display=swap">
+<style>
+/* Layout: one dark page, red used as a single signal colour.
+   Hero = headline + tilting browser frame of the Rotoflex site, then a skills ticker,
+   about, skills list, project, contact. English / Arabic toggle flips direction. */
+:root{
+  --ink:#0b0909;
+  --panel:#141010;
+  --panel-2:#1c1616;
+  --line:#2c2121;
+  --fg:#f4eded;
+  --muted:#a99c9c;
+  --red:#e5192b;
+  --red-hot:#ff4a57;
+  --glow:rgba(229,25,43,.35);
+  --f-display:"Syne","Cairo",system-ui,sans-serif;
+  --f-body:"Manrope","Cairo",system-ui,sans-serif;
+  --f-mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+:root[lang="ar"]{
+  --f-display:"Cairo","Syne",system-ui,sans-serif;
+  --f-body:"Cairo","Manrope",system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--fg);
+  font-family:var(--f-body);
+  font-size:16px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+*,*::before,*::after{box-sizing:border-box}
+a{color:inherit}
+::selection{background:var(--red);color:#fff}
+
+/* cursor spotlight */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(520px circle at var(--mx,72%) var(--my,8%),rgba(229,25,43,.13),transparent 62%);
+}
+main,header,footer{position:relative;z-index:1}
+
+.wrap{
+  width:100%;max-width:1120px;margin-inline:auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+section{scroll-margin-top:84px}
+
+/* header */
+.top{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:20;
+  background:rgba(11,9,9,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--f-display);font-weight:800;font-size:1.05rem}
+.mono{
+  width:34px;height:34px;display:grid;place-items:center;background:var(--red);color:#fff;
+  font-family:var(--f-mono);font-size:.8rem;font-weight:700;border-radius:6px;direction:ltr;
+}
+.nav{display:flex;align-items:center;gap:26px}
+.nav a{text-decoration:none;color:var(--muted);font-size:.92rem;transition:color .2s}
+.nav a:hover{color:var(--fg)}
+.lang{
+  font:inherit;font-size:.88rem;font-weight:700;color:var(--fg);background:transparent;
+  border:1px solid var(--line);border-radius:999px;padding:6px 16px;cursor:pointer;
+  transition:border-color .2s,background .2s;
+}
+.lang:hover{border-color:var(--red);background:rgba(229,25,43,.1)}
+:focus-visible{outline:2px solid var(--red-hot);outline-offset:3px}
+
+/* hero */
+.hero{position:relative;padding-block:clamp(40px,7vw,96px) clamp(40px,6vw,80px);overflow:hidden}
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:-1;opacity:.55;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:56px 56px;
+  -webkit-mask-image:radial-gradient(ellipse at 25% 15%,#000 15%,transparent 72%);
+  mask-image:radial-gradient(ellipse at 25% 15%,#000 15%,transparent 72%);
+}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:center}
+.hero-grid>*{min-width:0}
+.pill{
+  display:inline-flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:.78rem;
+  color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 14px;background:rgba(20,16,16,.7);
+}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--red-hot);box-shadow:0 0 0 0 var(--glow);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,74,87,.55)}70%{box-shadow:0 0 0 10px rgba(255,74,87,0)}100%{box-shadow:0 0 0 0 rgba(255,74,87,0)}}
+.eyebrow{margin:22px 0 10px;font-family:var(--f-mono);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red-hot)}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance}
+h1{font-size:clamp(2.5rem,6.6vw,5rem);line-height:1.04;font-weight:800;letter-spacing:-.025em}
+.hl{font-style:normal;color:var(--red-hot);position:relative;white-space:nowrap}
+.hl::after{
+  content:"";position:absolute;inset-inline:0;bottom:-.04em;height:.09em;background:var(--red);
+  transform-origin:left center;transform:scaleX(0);animation:draw 1s .9s cubic-bezier(.2,.7,.2,1) forwards;
+}
+:root[lang="ar"] .hl::after{transform-origin:right center}
+@keyframes draw{to{transform:scaleX(1)}}
+.lead{margin:24px 0 32px;max-width:54ch;color:var(--muted);font-size:1.06rem}
+.cta{display:flex;flex-wrap:wrap;gap:14px}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;font:inherit;font-weight:700;font-size:.95rem;text-decoration:none;
+  padding:13px 24px;border-radius:8px;border:1px solid var(--red);cursor:pointer;
+  transition:transform .2s,box-shadow .2s,background .2s;
+}
+.btn.primary{background:var(--red);color:#fff}
+.btn.ghost{background:transparent;color:var(--fg);border-color:var(--line)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px -8px var(--glow)}
+.btn.ghost:hover{border-color:var(--red)}
+.arrow{display:inline-block;transition:transform .2s}
+.btn:hover .arrow{transform:translateX(4px)}
+:root[dir="rtl"] .arrow{transform:scaleX(-1)}
+:root[dir="rtl"] .btn:hover .arrow{transform:scaleX(-1) translateX(4px)}
+
+.rise{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.d1{animation-delay:.05s}.d2{animation-delay:.18s}.d3{animation-delay:.32s}.d4{animation-delay:.46s}.d5{animation-delay:.6s}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+/* browser frame */
+#visual{perspective:1000px;animation:float 7s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.browser{
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  box-shadow:0 40px 90px -30px var(--glow),0 0 0 1px rgba(255,255,255,.02);
+  transition:transform .25s ease-out;transform-style:preserve-3d;direction:ltr;
+}
+.bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid var(--line);background:var(--panel-2)}
+.bar i{width:10px;height:10px;border-radius:50%;background:#3a2d2d}
+.bar i:first-child{background:var(--red)}
+.url{margin-inline-start:10px;flex:1;min-width:0;font-family:var(--f-mono);font-size:.7rem;color:var(--muted);background:var(--ink);border-radius:6px;padding:5px 10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mini{padding:18px 20px 24px;background:linear-gradient(180deg,var(--panel-2),var(--panel))}
+.mini-nav{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:22px}
+.mini-nav b{font-family:var(--f-display);font-size:.9rem;letter-spacing:.06em}
+.mini-nav span{display:flex;gap:7px}
+.mini-nav span i{display:block;width:26px;height:5px;border-radius:3px;background:#3a2d2d}
+.mini h4{margin:0 0 8px;font-family:var(--f-display);font-size:1.05rem;line-height:1.25;font-weight:800}
+.mini p{margin:0 0 20px;font-size:.72rem;line-height:1.55;color:var(--muted)}
+.pouches{display:flex;gap:14px;align-items:flex-end}
+.pouch{position:relative;width:64px;height:92px;border-radius:7px 7px 13px 13px;box-shadow:0 10px 20px -8px rgba(0,0,0,.7)}
+.pouch::before{content:"";position:absolute;inset-inline:0;top:9px;height:2px;background:rgba(0,0,0,.25)}
+.pouch.a{background:#eeeaea}
+.pouch.b{background:#7a44e0;height:104px}
+.pouch.c{background:#d5cdbb;width:74px;height:84px;border-radius:5px}
+.mini-btn{margin-top:20px;display:inline-block;font-size:.66rem;font-weight:700;background:var(--red);color:#fff;padding:7px 14px;border-radius:5px}
+
+/* ticker */
+.ticker{border-block:1px solid var(--line);background:var(--panel);overflow:hidden;direction:ltr}
+#track{display:flex;width:max-content;animation:slide 32s linear infinite}
+.ticker:hover #track{animation-play-state:paused}
+#track span{
+  display:flex;align-items:center;gap:26px;padding:16px 26px 16px 0;
+  font-family:var(--f-display);font-weight:800;font-size:1.15rem;white-space:nowrap;
+  color:var(--fg);
+}
+#track span::after{content:"";width:9px;height:9px;background:var(--red);transform:rotate(45deg)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* sections */
+.block{padding-block:clamp(64px,9vw,120px)}
+.label{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red-hot);margin:0 0 16px}
+h2{font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.1;font-weight:800;letter-spacing:-.02em;position:relative;padding-bottom:20px}
+h2::after{content:"";position:absolute;inset-inline-start:0;bottom:0;width:72px;height:4px;background:var(--red);transform-origin:left center;transform:scaleX(.35);transition:transform .9s .15s cubic-bezier(.2,.7,.2,1)}
+:root[lang="ar"] h2::after{transform-origin:right center}
+.in h2::after,h2.in::after{transform:scaleX(1)}
+.reveal{transform:translateY(28px);transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{transform:none}
+
+.about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(28px,5vw,72px)}
+.about-grid>*{min-width:0}
+.about-grid p{margin:0 0 18px;color:var(--muted);font-size:1.05rem;max-width:60ch}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:clamp(40px,6vw,72px)}
+.fact{border-top:2px solid var(--red);padding-top:16px}
+.fact h3{font-size:1.25rem;font-weight:800;margin-bottom:6px}
+.fact p{margin:0;color:var(--muted);font-size:.95rem}
+
+.skills{margin-top:44px;border-top:1px solid var(--line)}
+.skill{
+  display:grid;grid-template-columns:1.1fr 1.6fr auto;gap:20px;align-items:center;
+  padding:22px 8px;border-bottom:1px solid var(--line);transition:background .25s,padding .25s;
+}
+.skill>*{min-width:0}
+.skill:hover{background:linear-gradient(90deg,rgba(229,25,43,.1),transparent);padding-inline:20px}
+:root[dir="rtl"] .skill:hover{background:linear-gradient(270deg,rgba(229,25,43,.1),transparent)}
+.skill b{font-family:var(--f-display);font-size:1.2rem;font-weight:800}
+.skill span.d{color:var(--muted);font-size:.95rem}
+.chip{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:.75rem;border:1px solid var(--line);border-radius:999px;padding:5px 14px;color:var(--muted);white-space:nowrap}
+.chip.live{border-color:var(--red);color:var(--fg)}
+
+.work{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,64px);align-items:center;margin-top:44px}
+.work>*{min-width:0}
+.work h3{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:800;margin-bottom:14px}
+.work p{color:var(--muted);margin:0 0 20px;max-width:52ch}
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.next{
+  margin-top:28px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;
+  border:1px dashed #4a3535;border-radius:14px;padding:22px 26px;
+}
+.next h3{font-size:1.3rem;font-weight:800}
+.next p{margin:4px 0 0;color:var(--muted)}
+
+.contact{text-align:center}
+.contact h2{padding-bottom:0}
+.contact h2::after{display:none}
+.contact .label{margin-bottom:14px}
+.contact p{color:var(--muted);margin:18px auto 30px;max-width:46ch}
+.mail{
+  font-family:var(--f-display);font-weight:800;font-size:clamp(1.25rem,3.6vw,2.3rem);
+  overflow-wrap:anywhere;user-select:all;-webkit-user-select:all;direction:ltr;unicode-bidi:isolate;
+  display:inline-block;margin-bottom:26px;border-bottom:3px solid var(--red);padding-bottom:6px;
+}
+.phone{display:flex;justify-content:center;align-items:baseline;flex-wrap:wrap;gap:6px 14px;margin:0 0 28px;color:var(--muted)}
+.phone b{font-family:var(--f-display);font-weight:800;font-size:1.35rem;color:var(--fg);direction:ltr;unicode-bidi:isolate;user-select:all;-webkit-user-select:all}
+footer{border-top:1px solid var(--line);padding-block:26px;color:var(--muted);font-size:.88rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between}
+
+:root[lang="ar"] body *{letter-spacing:0}
+:root[lang="ar"] h1{line-height:1.3}
+:root[lang="ar"] h2{line-height:1.3}
+:root[lang="ar"] .eyebrow,:root[lang="ar"] .label{text-transform:none}
+
+@media (max-width:860px){
+  .hero-grid,.about-grid,.work{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr;gap:22px}
+  .nav a{display:none}
+}
+@media (max-width:640px){
+  .skill{grid-template-columns:1fr;gap:6px}
+  .skill .chip{justify-self:start}
+  .next{padding:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  #track{animation:none}
+  .reveal{transform:none}
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Youssef Elattar">
+      <span class="mono">&lt;YE/&gt;</span>
+      <span data-i18n="name">Youssef Elattar</span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#about" data-i18n="navAbout">About</a>
+      <a href="#skills" data-i18n="navSkills">Skills</a>
+      <a href="#work" data-i18n="navWork">Work</a>
+      <a href="#contact" data-i18n="navContact">Contact</a>
+      <button class="lang" id="lang" type="button" aria-label="Switch language">العربية</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="pill rise d1"><span class="dot"></span><span data-i18n="open">Open to freelance work</span></span>
+        <p class="eyebrow rise d2" data-i18n="eyebrow">Youssef Elattar · Front-End Developer</p>
+        <h1 class="rise d3" data-i18n="h1">Websites that look sharp and <em class="hl">sell</em>.</h1>
+        <p class="lead rise d4" data-i18n="lead">I'm an ambitious front-end developer with one year of experience building modern, eye-catching websites with HTML and CSS. I bring a marketing mindset to every layout, so the page looks good and also does its job for your business.</p>
+        <div class="cta rise d5">
+          <a class="btn primary" href="#work"><span data-i18n="ctaWork">See my work</span><span class="arrow">→</span></a>
+          <a class="btn ghost" href="#contact" data-i18n="ctaTalk">Contact me</a>
+        </div>
+      </div>
+      <div id="visual" class="rise d4" aria-hidden="true">
+        <div class="browser" id="mock" dir="ltr">
+          <div class="bar"><i></i><i></i><i></i><div class="url">joo-max1.github.io/Rotoflex</div></div>
+          <div class="mini">
+            <div class="mini-nav"><b>ROTOFLEX</b><span><i></i><i></i><i></i><i></i></span></div>
+            <h4>World-class print quality and packaging that protects your products.</h4>
+            <p>Printing high-quality packaging materials from A to Z, using the latest technology.</p>
+            <div class="pouches"><div class="pouch a"></div><div class="pouch b"></div><div class="pouch c"></div></div>
+            <span class="mini-btn">Browse our products</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true"><div id="track"></div></div>
+
+  <section class="block" id="about">
+    <div class="wrap">
+      <p class="label reveal" data-i18n="aboutLabel">About</p>
+      <div class="about-grid">
+        <h2 class="reveal" data-i18n="aboutTitle">Code written with the customer in mind.</h2>
+        <div class="reveal">
+          <p data-i18n="aboutP1">My strength is combining front-end skills with marketing. Before I write a line of CSS, I ask who is visiting, what they need to do, and what the business wants from that visit.</p>
+          <p data-i18n="aboutP2">I know JavaScript fundamentals and I'm now going deeper into React. I stick to deadlines and deliver clean, responsive work on time.</p>
+        </div>
+      </div>
+      <div class="facts">
+        <div class="fact reveal"><h3 data-i18n="f1t">1 year</h3><p data-i18n="f1d">of hands-on front-end work.</p></div>
+        <div class="fact reveal"><h3 data-i18n="f2t">Marketing + code</h3><p data-i18n="f2d">Every page is built around what the visitor should do next.</p></div>
+        <div class="fact reveal"><h3 data-i18n="f3t">On time</h3><p data-i18n="f3d">Clear deadlines, and I keep them.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="skills" style="padding-top:0">
+    <div class="wrap">
+      <p class="label reveal" data-i18n="skillsLabel">Skills</p>
+      <h2 class="reveal" data-i18n="skillsTitle">What I work with</h2>
+      <div class="skills reveal">
+        <div class="skill"><b>HTML5</b><span class="d" data-i18n="s1d">Clean, well-structured pages.</span><span class="chip" data-i18n="s1c">Daily use</span></div>
+        <div class="skill"><b>CSS3</b><span class="d" data-i18n="s2d">Layouts that adapt from phone to desktop, with motion where it helps.</span><span class="chip" data-i18n="s2c">Daily use</span></div>
+        <div class="skill"><b>JavaScript</b><span class="d" data-i18n="s3d">Interactivity and the fundamentals.</span><span class="chip" data-i18n="s3c">Solid basics</span></div>
+        <div class="skill"><b>React</b><span class="d" data-i18n="s4d">Component-based interfaces.</span><span class="chip live"><span class="dot"></span><span data-i18n="s4c">Learning now</span></span></div>
+        <div class="skill"><b data-i18n="s5n">Marketing &amp; UX</b><span class="d" data-i18n="s5d">Pages built around the visitor's goal and the business's goal.</span><span class="chip" data-i18n="s5c">In every project</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="work" style="padding-top:0">
+    <div class="wrap">
+      <p class="label reveal" data-i18n="workLabel">Selected work</p>
+      <h2 class="reveal" data-i18n="workTitle">A recent project</h2>
+      <div class="work reveal">
+        <div>
+          <h3>Rotoflex</h3>
+          <p data-i18n="workDesc">A corporate website for a flexible-packaging company. It presents the brand, its products (zipper pouches, snack bags and twist wraps) and contact details in a clean, smooth layout that shows the content at its best.</p>
+          <div class="tags"><span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip" data-i18n="tagResp">Responsive</span></div>
+          <a class="btn primary" href="https://joo-max1.github.io/Rotoflex/" target="_blank" rel="noopener"><span data-i18n="visit">Visit live site</span><span class="arrow">→</span></a>
+        </div>
+        <div class="browser" dir="ltr" aria-hidden="true" style="transform:none">
+          <div class="bar"><i></i><i></i><i></i><div class="url">joo-max1.github.io/Rotoflex/products.html</div></div>
+          <div class="mini">
+            <div class="mini-nav"><b>ROTOFLEX</b><span><i></i><i></i><i></i><i></i></span></div>
+            <h4>Our products</h4>
+            <p>Zipper Pouch · Snack Bag Pouch · Twist Wrap</p>
+            <div class="pouches"><div class="pouch a"></div><div class="pouch b"></div><div class="pouch c"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="next reveal">
+        <div><h3 data-i18n="nextT">Your project could be next.</h3><p data-i18n="nextD">Tell me what you need built.</p></div>
+        <a class="btn ghost" href="#contact" data-i18n="nextC">Start a conversation</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block contact" id="contact" style="padding-top:0">
+    <div class="wrap">
+      <p class="label reveal" data-i18n="contactLabel">Contact</p>
+      <h2 class="reveal" data-i18n="contactTitle">Let's build your website.</h2>
+      <p class="reveal" data-i18n="contactD">Send me a short note about your business and what you need built.</p>
+      <div class="reveal">
+        <div class="mail" id="mail">youssefelattar009@gmail.com</div>
+        <div class="phone"><span data-i18n="phoneLabel">Phone</span><b id="phone">01022751437</b></div>
+        <button class="btn primary" id="copy" type="button"><span id="copyLabel">Copy email</span></button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span data-i18n="foot">© 2026 Youssef Elattar</span>
+    <span data-i18n="foot2">Built with HTML, CSS and a little JavaScript.</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var EMAIL = "youssefelattar009@gmail.com";
+  var T = {
+    en: {
+      toggle: "العربية", toggleLabel: "Switch to Arabic",
+      name: "Youssef Elattar",
+      navAbout: "About", navSkills: "Skills", navWork: "Work", navContact: "Contact",
+      open: "Open to freelance work",
+      eyebrow: "Youssef Elattar · Front-End Developer",
+      h1: 'Websites that look sharp and <em class="hl">sell</em>.',
+      lead: "I'm an ambitious front-end developer with one year of experience building modern, eye-catching websites with HTML and CSS. I bring a marketing mindset to every layout, so the page looks good and also does its job for your business.",
+      ctaWork: "See my work", ctaTalk: "Contact me",
+      aboutLabel: "About", aboutTitle: "Code written with the customer in mind.",
+      aboutP1: "My strength is combining front-end skills with marketing. Before I write a line of CSS, I ask who is visiting, what they need to do, and what the business wants from that visit.",
+      aboutP2: "I know JavaScript fundamentals and I'm now going deeper into React. I stick to deadlines and deliver clean, responsive work on time.",
+      f1t: "1 year", f1d: "of hands-on front-end work.",
+      f2t: "Marketing + code", f2d: "Every page is built around what the visitor should do next.",
+      f3t: "On time", f3d: "Clear deadlines, and I keep them.",
+      skillsLabel: "Skills", skillsTitle: "What I work with",
+      s1d: "Clean, well-structured pages.", s1c: "Daily use",
+      s2d: "Layouts that adapt from phone to desktop, with motion where it helps.", s2c: "Daily use",
+      s3d: "Interactivity and the fundamentals.", s3c: "Solid basics",
+      s4d: "Component-based interfaces.", s4c: "Learning now",
+      s5n: "Marketing &amp; UX", s5d: "Pages built around the visitor's goal and the business's goal.", s5c: "In every project",
+      workLabel: "Selected work", workTitle: "A recent project",
+      workDesc: "A corporate website for a flexible-packaging company. It presents the brand, its products (zipper pouches, snack bags and twist wraps) and contact details in a clean, smooth layout that shows the content at its best.",
+      tagResp: "Responsive", visit: "Visit live site",
+      nextT: "Your project could be next.", nextD: "Tell me what you need built.", nextC: "Start a conversation",
+      contactLabel: "Contact", contactTitle: "Let's build your website.",
+      contactD: "Send me a short note about your business and what you need built.",
+      copy: "Copy email", copied: "Copied", copyFail: "Selected. Press copy now.", phoneLabel: "Phone",
+      foot: "© 2026 Youssef Elattar", foot2: "Built with HTML, CSS and a little JavaScript.",
+      marquee: ["HTML5", "CSS3", "JavaScript", "React (learning)", "Responsive design", "Landing pages", "Company websites", "UX thinking", "Marketing mindset"]
+    },
+    ar: {
+      toggle: "EN", toggleLabel: "التبديل إلى الإنجليزية",
+      name: "يوسف العطار",
+      navAbout: "نبذة", navSkills: "المهارات", navWork: "الأعمال", navContact: "تواصل",
+      open: "متاح لمشاريع العمل الحر",
+      eyebrow: "يوسف العطار · مطوّر واجهات أمامية",
+      h1: 'مواقع تبدو أنيقة و<em class="hl">تبيع</em>.',
+      lead: "أنا مطوّر واجهات أمامية طموح بخبرة سنة، أبني مواقع عصرية وجذابة باستخدام HTML وCSS. أدمج مهارات التسويق في كل تصميم، فيكون الموقع جميلًا ويخدم أهداف عملك فعلًا.",
+      ctaWork: "شاهد أعمالي", ctaTalk: "تواصل معي",
+      aboutLabel: "نبذة", aboutTitle: "كود مكتوب بعقلية العميل.",
+      aboutP1: "أهم ما يميزني هو الجمع بين مهارات الواجهات الأمامية والتسويق. قبل أن أكتب سطر CSS واحدًا أسأل: من سيزور الموقع؟ وماذا يحتاج أن يفعل؟ وماذا يريد صاحب العمل من هذه الزيارة؟",
+      aboutP2: "لدي أساسيات JavaScript وأتعمق حاليًا في React. ألتزم بالمواعيد وأسلّم عملًا نظيفًا ومتجاوبًا في وقته.",
+      f1t: "سنة خبرة", f1d: "في العمل الفعلي على الواجهات الأمامية.",
+      f2t: "تسويق + كود", f2d: "كل صفحة مبنية حول ما يجب أن يفعله الزائر بعد ذلك.",
+      f3t: "في الموعد", f3d: "مواعيد واضحة وألتزم بها.",
+      skillsLabel: "المهارات", skillsTitle: "أدواتي",
+      s1d: "صفحات نظيفة ومنظمة.", s1c: "استخدام يومي",
+      s2d: "تصاميم تتكيف من الموبايل إلى الكمبيوتر، مع حركة حيث تفيد.", s2c: "استخدام يومي",
+      s3d: "التفاعل والأساسيات.", s3c: "أساسيات قوية",
+      s4d: "واجهات مبنية بالمكوّنات.", s4c: "أتعلمها الآن",
+      s5n: "التسويق وتجربة المستخدم", s5d: "صفحات مبنية حول هدف الزائر وهدف صاحب العمل.", s5c: "في كل مشروع",
+      workLabel: "أعمال مختارة", workTitle: "مشروع حديث",
+      workDesc: "موقع تعريفي لشركة تغليف مرن. يعرض الشركة ومنتجاتها (أكياس بسوستة، وأكياس سناك، ولفائف) وبيانات التواصل بتصميم نظيف وسلس يُظهر المحتوى بأفضل شكل.",
+      tagResp: "متجاوب", visit: "زيارة الموقع",
+      nextT: "قد يكون مشروعك هو التالي.", nextD: "أخبرني بما تريد بناءه.", nextC: "ابدأ المحادثة",
+      contactLabel: "تواصل", contactTitle: "لنبنِ موقعك معًا.",
+      contactD: "أرسل لي رسالة قصيرة عن عملك وما تحتاج إلى بنائه.",
+      copy: "نسخ البريد", copied: "تم النسخ", copyFail: "تم التحديد، انسخه الآن.", phoneLabel: "الهاتف",
+      foot: "© 2026 يوسف العطار", foot2: "مبني بـ HTML وCSS وقليل من JavaScript.",
+      marquee: ["HTML5", "CSS3", "JavaScript", "React (قيد التعلم)", "تصميم متجاوب", "صفحات هبوط", "مواقع شركات", "تجربة المستخدم", "عقلية تسويقية"]
+    }
+  };
+
+  var root = document.documentElement;
+  var toggle = document.getElementById("lang");
+  var copyLabel = document.getElementById("copyLabel");
+  var lang = "en";
+
+  try {
+    var saved = localStorage.getItem("lang");
+    if (saved === "ar" || saved === "en") lang = saved;
+    else if (((navigator.language || "") + "").toLowerCase().indexOf("ar") === 0) lang = "ar";
+  } catch (e) {
+    if (((navigator.language || "") + "").toLowerCase().indexOf("ar") === 0) lang = "ar";
+  }
+
+  function buildTicker(items) {
+    var html = items.map(function (i) { return "<span>" + i + "</span>"; }).join("");
+    document.getElementById("track").innerHTML = html + html;
+  }
+
+  function apply(l) {
+    lang = l;
+    var d = T[l];
+    root.lang = l;
+    root.dir = l === "ar" ? "rtl" : "ltr";
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      var v = d[el.getAttribute("data-i18n")];
+      if (v !== undefined) el.innerHTML = v;
+    });
+    copyLabel.textContent = d.copy;
+    toggle.textContent = d.toggle;
+    toggle.setAttribute("aria-label", d.toggleLabel);
+    buildTicker(d.marquee);
+    try { localStorage.setItem("lang", l); } catch (e) {}
+  }
+
+  toggle.addEventListener("click", function () { apply(lang === "en" ? "ar" : "en"); });
+  apply(lang);
+
+  /* copy email */
+  var timer;
+  document.getElementById("copy").addEventListener("click", function () {
+    var d = T[lang];
+    function done(msg) {
+      copyLabel.textContent = msg;
+      clearTimeout(timer);
+      timer = setTimeout(function () { copyLabel.textContent = T[lang].copy; }, 2200);
+    }
+    function selectText() {
+      var r = document.createRange();
+      r.selectNodeContents(document.getElementById("mail"));
+      var s = window.getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+      done(d.copyFail);
+    }
+    try {
+      navigator.clipboard.writeText(EMAIL).then(function () { done(d.copied); }, selectText);
+    } catch (e) { selectText(); }
+  });
+
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* reveal on scroll (elements are fully visible; only a small shift animates) */
+  var items = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window && !reduce) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12 });
+    items.forEach(function (el) { io.observe(el); });
+  } else {
+    items.forEach(function (el) { el.classList.add("in"); });
+  }
+
+  /* cursor spotlight + browser tilt */
+  if (!reduce) {
+    var raf = 0;
+    window.addEventListener("pointermove", function (e) {
+      if (raf) return;
+      raf = requestAnimationFrame(function () {
+        root.style.setProperty("--mx", e.clientX + "px");
+        root.style.setProperty("--my", e.clientY + "px");
+        raf = 0;
+      });
+    }, { passive: true });
+
+    var vis = document.getElementById("visual");
+    var mock = document.getElementById("mock");
+    vis.addEventListener("pointermove", function (e) {
+      var r = vis.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5;
+      var y = (e.clientY - r.top) / r.height - 0.5;
+      mock.style.transform = "rotateY(" + (x * 12).toFixed(2) + "deg) rotateX(" + (-y * 9).toFixed(2) + "deg)";
+    });
+    vis.addEventListener("pointerleave", function () { mock.style.transform = ""; });
+  }
+})();
+</script>
+
+</html>
