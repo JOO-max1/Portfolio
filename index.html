@@ -156,6 +156,13 @@ h1{font-size:clamp(2.5rem,6.6vw,5rem);line-height:1.04;font-weight:800;letter-sp
 .pouch.c{background:#d5cdbb;width:74px;height:84px;border-radius:5px}
 .mini-btn{margin-top:20px;display:inline-block;font-size:.66rem;font-weight:700;background:var(--red);color:#fff;padding:7px 14px;border-radius:5px}
 
+/* second project */
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;direction:ltr}
+.plan{border:1px solid var(--line);border-radius:7px;padding:9px 4px;text-align:center;background:var(--ink)}
+.plan small{display:block;font-family:var(--f-mono);font-size:.56rem;color:var(--muted);letter-spacing:.04em}
+.plan b{display:block;font-family:var(--f-display);font-size:.82rem;margin-top:2px}
+.plan.best{border-color:var(--red);box-shadow:0 0 0 1px var(--red) inset}
+
 /* ticker */
 .ticker{border-block:1px solid var(--line);background:var(--panel);overflow:hidden;direction:ltr}
 #track{display:flex;width:max-content;animation:slide 32s linear infinite}
@@ -199,11 +206,26 @@ h2::after{content:"";position:absolute;inset-inline-start:0;bottom:0;width:72px;
 .chip{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:.75rem;border:1px solid var(--line);border-radius:999px;padding:5px 14px;color:var(--muted);white-space:nowrap}
 .chip.live{border-color:var(--red);color:var(--fg)}
 
-.work{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,64px);align-items:center;margin-top:44px}
-.work>*{min-width:0}
-.work h3{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:800;margin-bottom:14px}
-.work p{color:var(--muted);margin:0 0 20px;max-width:52ch}
-.tags{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+/* project cards */
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:44px;align-items:stretch}
+.cards>*{min-width:0}
+.card{
+  display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+  transition:transform .3s ease,border-color .3s,box-shadow .3s;
+}
+.card:hover{transform:translateY(-6px);border-color:var(--red);box-shadow:0 30px 70px -30px var(--glow)}
+.card .browser{border:0;border-radius:0;border-bottom:1px solid var(--line);box-shadow:none}
+.card-body{display:flex;flex-direction:column;gap:22px;flex:1;padding:clamp(20px,3vw,32px)}
+.card-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.card h3{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;margin:0}
+.card-desc{margin:0;color:var(--muted)}
+.sub{margin:0 0 10px;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red-hot)}
+.stack{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.stack li{display:grid;grid-template-columns:84px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid var(--line);font-size:.92rem;line-height:1.55}
+.stack b{font-family:var(--f-display);font-weight:800}
+.stack span{color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.card .btn{align-self:flex-start;margin-top:auto}
 .next{
   margin-top:28px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;
   border:1px dashed #4a3535;border-radius:14px;padding:22px 26px;
@@ -232,7 +254,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-bet
 :root[lang="ar"] .eyebrow,:root[lang="ar"] .label{text-transform:none}
 
 @media (max-width:860px){
-  .hero-grid,.about-grid,.work{grid-template-columns:1fr}
+  .hero-grid,.about-grid,.cards{grid-template-columns:1fr}
   .facts{grid-template-columns:1fr;gap:22px}
   .nav a{display:none}
 }
@@ -330,23 +352,89 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-bet
   <section class="block" id="work" style="padding-top:0">
     <div class="wrap">
       <p class="label reveal" data-i18n="workLabel">Selected work</p>
-      <h2 class="reveal" data-i18n="workTitle">A recent project</h2>
-      <div class="work reveal">
-        <div>
-          <h3>Rotoflex</h3>
-          <p data-i18n="workDesc">A corporate website for a flexible-packaging company. It presents the brand, its products (zipper pouches, snack bags and twist wraps) and contact details in a clean, smooth layout that shows the content at its best.</p>
-          <div class="tags"><span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip" data-i18n="tagResp">Responsive</span></div>
-          <a class="btn primary" href="https://joo-max1.github.io/Rotoflex/" target="_blank" rel="noopener"><span data-i18n="visit">Visit live site</span><span class="arrow">→</span></a>
-        </div>
-        <div class="browser" dir="ltr" aria-hidden="true" style="transform:none">
-          <div class="bar"><i></i><i></i><i></i><div class="url">joo-max1.github.io/Rotoflex/products.html</div></div>
-          <div class="mini">
-            <div class="mini-nav"><b>ROTOFLEX</b><span><i></i><i></i><i></i><i></i></span></div>
-            <h4>Our products</h4>
-            <p>Zipper Pouch · Snack Bag Pouch · Twist Wrap</p>
-            <div class="pouches"><div class="pouch a"></div><div class="pouch b"></div><div class="pouch c"></div></div>
+      <h2 class="reveal" data-i18n="workTitle">Recent projects</h2>
+      <div class="cards reveal">
+        <article class="card">
+          <div class="browser" dir="ltr" aria-hidden="true" style="transform:none">
+            <div class="bar"><i></i><i></i><i></i><div class="url">joo-max1.github.io/Rotoflex/products.html</div></div>
+            <div class="mini">
+              <div class="mini-nav"><b>ROTOFLEX</b><span><i></i><i></i><i></i><i></i></span></div>
+              <h4>Our products</h4>
+              <p>Zipper Pouch · Snack Bag Pouch · Twist Wrap</p>
+              <div class="pouches"><div class="pouch a"></div><div class="pouch b"></div><div class="pouch c"></div></div>
+            </div>
           </div>
-        </div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="chip" data-i18n="c1type">Corporate website</span>
+              <span class="chip live"><span class="dot"></span><span data-i18n="liveLbl">Live</span></span>
+            </div>
+            <h3>Rotoflex</h3>
+            <p class="card-desc" data-i18n="workDesc">A corporate website for a flexible-packaging company. It presents the brand, its products (zipper pouches, snack bags and twist wraps) and contact details in a clean, smooth layout that shows the content at its best.</p>
+            <div>
+              <p class="sub" data-i18n="techLabel">Languages &amp; tools</p>
+              <ul class="stack">
+                <li><b>HTML5</b><span data-i18n="c1html">Clean, semantic page structure across the home and products pages.</span></li>
+                <li><b>CSS3</b><span data-i18n="c1css">Responsive layouts that adapt from phone to desktop.</span></li>
+              </ul>
+            </div>
+            <div>
+              <p class="sub" data-i18n="skillsLbl">Skills used</p>
+              <div class="chips">
+                <span class="chip" data-i18n="c1s1">Responsive design</span>
+                <span class="chip" data-i18n="c1s2">Brand presentation</span>
+                <span class="chip" data-i18n="c1s3">Product showcase</span>
+                <span class="chip" data-i18n="c1s4">Clean UI</span>
+              </div>
+            </div>
+            <a class="btn primary" href="https://joo-max1.github.io/Rotoflex/" target="_blank" rel="noopener"><span data-i18n="visit">Visit live site</span><span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="browser" dir="ltr" aria-hidden="true" style="transform:none">
+            <div class="bar"><i></i><i></i><i></i><div class="url">joo-max1.github.io/Omar-Walid</div></div>
+            <div class="mini">
+              <div class="mini-nav"><b>OMAR WALID</b><span><i></i><i></i><i></i><i></i></span></div>
+              <h4>Your goals. Your plan. Your transformation.</h4>
+              <p>Training and nutrition plans with continuous follow-up.</p>
+              <div class="plans">
+                <div class="plan"><small>1 MO</small><b>300</b></div>
+                <div class="plan"><small>2 MO</small><b>550</b></div>
+                <div class="plan"><small>3 MO</small><b>800</b></div>
+                <div class="plan best"><small>4 MO</small><b>1,000</b></div>
+              </div>
+              <span class="mini-btn">Start Your Transformation</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="chip" data-i18n="c2type">Online coaching website</span>
+              <span class="chip live"><span class="dot"></span><span data-i18n="liveLbl">Live</span></span>
+            </div>
+            <h3>Omar Walid Coaching</h3>
+            <p class="card-desc" data-i18n="work2Desc">An Arabic, right-to-left website for an online fitness coach. It explains what each plan includes, compares four coaching packages by duration and price, and turns a short application form into a ready-to-send WhatsApp message.</p>
+            <div>
+              <p class="sub" data-i18n="techLabel">Languages &amp; tools</p>
+              <ul class="stack">
+                <li><b>HTML5</b><span data-i18n="c2html">Clear sections for about, what's included, packages, FAQ and contact.</span></li>
+                <li><b>CSS3</b><span data-i18n="c2css">Bold dark design with a right-to-left Arabic layout that adapts to mobile.</span></li>
+                <li><b>JavaScript</b><span data-i18n="c2js">An application form that builds a ready-to-send WhatsApp message.</span></li>
+              </ul>
+            </div>
+            <div>
+              <p class="sub" data-i18n="skillsLbl">Skills used</p>
+              <div class="chips">
+                <span class="chip" data-i18n="c2s1">Arabic / RTL design</span>
+                <span class="chip" data-i18n="c2s2">Conversion-focused CTAs</span>
+                <span class="chip" data-i18n="c2s3">Pricing &amp; packages UI</span>
+                <span class="chip" data-i18n="c2s4">Form handling</span>
+                <span class="chip" data-i18n="c2s5">Marketing mindset</span>
+              </div>
+            </div>
+            <a class="btn primary" href="https://joo-max1.github.io/Omar-Walid/" target="_blank" rel="noopener"><span data-i18n="visit">Visit live site</span><span class="arrow">→</span></a>
+          </div>
+        </article>
       </div>
       <div class="next reveal">
         <div><h3 data-i18n="nextT">Your project could be next.</h3><p data-i18n="nextD">Tell me what you need built.</p></div>
@@ -363,7 +451,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-bet
       <div class="reveal">
         <div class="mail" id="mail">youssefelattar009@gmail.com</div>
         <div class="phone"><span data-i18n="phoneLabel">Phone</span><b id="phone">01500994186</b></div>
-        <button class="btn primary" id="copy" type="button"><span id="copyLabel">Copy email</span></button>
+        <a class="btn primary" id="wa" href="https://wa.me/201500994186" target="_blank" rel="noopener"><span data-i18n="wa">Contact me on WhatsApp</span><span class="arrow">→</span></a>
       </div>
     </div>
   </section>
@@ -378,7 +466,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-bet
 
 <script>
 (function () {
-  var EMAIL = "youssefelattar009@gmail.com";
   var T = {
     en: {
       toggle: "العربية", toggleLabel: "Switch to Arabic",
@@ -401,13 +488,24 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-bet
       s3d: "Interactivity and the fundamentals.", s3c: "Solid basics",
       s4d: "Component-based interfaces.", s4c: "Learning now",
       s5n: "Marketing &amp; UX", s5d: "Pages built around the visitor's goal and the business's goal.", s5c: "In every project",
-      workLabel: "Selected work", workTitle: "A recent project",
+      workLabel: "Selected work", workTitle: "Recent projects",
+      work2Desc: "An Arabic, right-to-left website for an online fitness coach. It explains what each plan includes, compares four coaching packages by duration and price, and turns a short application form into a ready-to-send WhatsApp message.",
+      liveLbl: "Live", techLabel: "Languages &amp; tools", skillsLbl: "Skills used",
+      c1type: "Corporate website",
+      c1html: "Clean, semantic page structure across the home and products pages.",
+      c1css: "Responsive layouts that adapt from phone to desktop.",
+      c1s1: "Responsive design", c1s2: "Brand presentation", c1s3: "Product showcase", c1s4: "Clean UI",
+      c2type: "Online coaching website",
+      c2html: "Clear sections for about, what's included, packages, FAQ and contact.",
+      c2css: "Bold dark design with a right-to-left Arabic layout that adapts to mobile.",
+      c2js: "An application form that builds a ready-to-send WhatsApp message.",
+      c2s1: "Arabic / RTL design", c2s2: "Conversion-focused CTAs", c2s3: "Pricing &amp; packages UI", c2s4: "Form handling", c2s5: "Marketing mindset",
       workDesc: "A corporate website for a flexible-packaging company. It presents the brand, its products (zipper pouches, snack bags and twist wraps) and contact details in a clean, smooth layout that shows the content at its best.",
       tagResp: "Responsive", visit: "Visit live site",
       nextT: "Your project could be next.", nextD: "Tell me what you need built.", nextC: "Start a conversation",
       contactLabel: "Contact", contactTitle: "Let's build your website.",
       contactD: "Send me a short note about your business and what you need built.",
-      copy: "Copy email", copied: "Copied", copyFail: "Selected. Press copy now.", phoneLabel: "Phone",
+      wa: "Contact me on WhatsApp", phoneLabel: "Phone",
       foot: "© 2026 Youssef Elattar", foot2: "Built with HTML, CSS and a little JavaScript.",
       marquee: ["HTML5", "CSS3", "JavaScript", "React (learning)", "Responsive design", "Landing pages", "Company websites", "UX thinking", "Marketing mindset"]
     },
@@ -432,13 +530,24 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-bet
       s3d: "التفاعل والأساسيات.", s3c: "أساسيات قوية",
       s4d: "واجهات مبنية بالمكوّنات.", s4c: "أتعلمها الآن",
       s5n: "التسويق وتجربة المستخدم", s5d: "صفحات مبنية حول هدف الزائر وهدف صاحب العمل.", s5c: "في كل مشروع",
-      workLabel: "أعمال مختارة", workTitle: "مشروع حديث",
+      workLabel: "أعمال مختارة", workTitle: "مشاريع حديثة",
+      work2Desc: "موقع عربي بالكامل (من اليمين لليسار) لمدرب لياقة أونلاين. يشرح ما تشمله كل باقة، ويقارن بين أربع باقات حسب المدة والسعر، ويحوّل فورم تقديم قصير إلى رسالة واتساب جاهزة للإرسال.",
+      liveLbl: "منشور", techLabel: "اللغات والأدوات", skillsLbl: "المهارات المستخدمة",
+      c1type: "موقع شركة",
+      c1html: "هيكل صفحات نظيف ومنظم في الصفحة الرئيسية وصفحة المنتجات.",
+      c1css: "تصميم متجاوب يتكيف من الموبايل إلى الكمبيوتر.",
+      c1s1: "تصميم متجاوب", c1s2: "عرض هوية الشركة", c1s3: "عرض المنتجات", c1s4: "واجهة نظيفة",
+      c2type: "موقع كوتشينج أونلاين",
+      c2html: "أقسام واضحة: نبذة، ما تشمله الباقة، الباقات، الأسئلة الشائعة، والتواصل.",
+      c2css: "تصميم داكن جريء بتخطيط عربي من اليمين لليسار يتكيف مع الموبايل.",
+      c2js: "فورم تقديم يجهّز رسالة واتساب جاهزة للإرسال.",
+      c2s1: "تصميم عربي RTL", c2s2: "أزرار دعوة لاتخاذ إجراء", c2s3: "واجهة الأسعار والباقات", c2s4: "التعامل مع الفورم", c2s5: "عقلية تسويقية",
       workDesc: "موقع تعريفي لشركة تغليف مرن. يعرض الشركة ومنتجاتها (أكياس بسوستة، وأكياس سناك، ولفائف) وبيانات التواصل بتصميم نظيف وسلس يُظهر المحتوى بأفضل شكل.",
       tagResp: "متجاوب", visit: "زيارة الموقع",
       nextT: "قد يكون مشروعك هو التالي.", nextD: "أخبرني بما تريد بناءه.", nextC: "ابدأ المحادثة",
       contactLabel: "تواصل", contactTitle: "لنبنِ موقعك معًا.",
       contactD: "أرسل لي رسالة قصيرة عن عملك وما تحتاج إلى بنائه.",
-      copy: "نسخ البريد", copied: "تم النسخ", copyFail: "تم التحديد، انسخه الآن.", phoneLabel: "الهاتف",
+      wa: "تواصل معي على واتساب", phoneLabel: "الهاتف",
       foot: "© 2026 يوسف العطار", foot2: "مبني بـ HTML وCSS وقليل من JavaScript.",
       marquee: ["HTML5", "CSS3", "JavaScript", "React (قيد التعلم)", "تصميم متجاوب", "صفحات هبوط", "مواقع شركات", "تجربة المستخدم", "عقلية تسويقية"]
     }
@@ -446,7 +555,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-bet
 
   var root = document.documentElement;
   var toggle = document.getElementById("lang");
-  var copyLabel = document.getElementById("copyLabel");
   var lang = "en";
 
   try {
@@ -471,7 +579,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-bet
       var v = d[el.getAttribute("data-i18n")];
       if (v !== undefined) el.innerHTML = v;
     });
-    copyLabel.textContent = d.copy;
     toggle.textContent = d.toggle;
     toggle.setAttribute("aria-label", d.toggleLabel);
     buildTicker(d.marquee);
@@ -480,28 +587,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-bet
 
   toggle.addEventListener("click", function () { apply(lang === "en" ? "ar" : "en"); });
   apply(lang);
-
-  /* copy email */
-  var timer;
-  document.getElementById("copy").addEventListener("click", function () {
-    var d = T[lang];
-    function done(msg) {
-      copyLabel.textContent = msg;
-      clearTimeout(timer);
-      timer = setTimeout(function () { copyLabel.textContent = T[lang].copy; }, 2200);
-    }
-    function selectText() {
-      var r = document.createRange();
-      r.selectNodeContents(document.getElementById("mail"));
-      var s = window.getSelection();
-      s.removeAllRanges();
-      s.addRange(r);
-      done(d.copyFail);
-    }
-    try {
-      navigator.clipboard.writeText(EMAIL).then(function () { done(d.copied); }, selectText);
-    } catch (e) { selectText(); }
-  });
 
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
